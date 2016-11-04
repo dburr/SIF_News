@@ -12,6 +12,11 @@ body {
   width: 880px;
   -webkit-text-size-adjust : 100%;
   margin: 10px auto;
+  background-image: url('./background.jpg');
+  background-size:100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #outer {
