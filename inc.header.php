@@ -31,7 +31,7 @@ $header = implode("\r\n",[
 	"client-version: $server[clientVersion]"
 ]);
 
-if (CACHE && !file_exists("./cache")){
+if (CACHE && !file_exists(CACHE_DIR)){
 	mkdir(CACHE_DIR);
 }
 
