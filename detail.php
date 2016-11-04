@@ -1,15 +1,8 @@
 <?php
 require_once("./inc.header.php");
 $url = $server["host"].'/detail?' . $_SERVER['QUERY_STRING'];
-$opts = array(
-  'http'=>array(
-    'method'=>"GET",
-    'header'=>$header)
-	);
-$context = stream_context_create($opts);
-$a = file_get_contents($url, false, $context);
-if (strlen($a) == 0){ exit; }
-$html = str_get_html($a);
+
+$html = str_get_html(getDataFromURL($url));
 foreach($html->find('script') as &$script){
 	if (DEBUG){
 		if (strlen($script->src)>=1){

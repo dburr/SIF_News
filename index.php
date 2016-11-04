@@ -2,16 +2,8 @@
 require_once("./inc.header.php");
 if (!isset($_GET['disp_faulty'])){ $_GET['disp_faulty'] = "0"; }
 
-$url = $server["host"]. "?" . $_SERVER['QUERY_STRING'];
-$opts = array(
-  'http'=>array(
-    'method'=>"GET",
-    'header'=>$header)
-);
-$context = stream_context_create($opts);
-$a = file_get_contents($url, false, $context);
-
-$html = str_get_html($a);
+$url = $server["host"]. "?disp_faulty=".$_GET['disp_faulty'];
+$html = str_get_html(getDataFromURL($url));
 
 $addedInline = false;
 $dp = $_GET['disp_faulty']||'0';

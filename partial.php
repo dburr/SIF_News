@@ -6,12 +6,4 @@ $args = array(
 );
 require_once("./inc.header.php");
 $url = $server["host"] . "/partial?" . http_build_query($args);
-$opts = array(
-  'http'=>array(
-    'method'=>"GET",
-	'header'=> $header
-  )
-);
-$context = stream_context_create($opts);
-$a = file_get_contents($url, false, $context);
-print $a;
+print getDataFromURL($url);
