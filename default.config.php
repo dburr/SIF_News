@@ -1,6 +1,5 @@
 <?php
-//User ID
-$user_id = 0;
-
-//Authorize Token
-$token = "";
+define("DEBUG",false);
+define("USER_ID","");
+define("TOKEN","");
+define("SERVER","jp");

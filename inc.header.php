@@ -6,13 +6,27 @@ if (!file_exists("./config.php")){
 }
 
 require_once("./config.php");
+require_once("./lib/simple_html_dom.php");
 
-$server = "http://prod-jp.lovelive.ge.klabgames.net/webview.php/announce";
+$servers = [
+	"jp"=>[
+		"appId"=>"626776655",
+		"bundleVersion"=>"4.1.0",
+		"clientVersion"=>"20.1",
+		"host"=>"http://prod-jp.lovelive.ge.klabgames.net/webview.php/announce"
+	]
+];
+
+if (!isset($servers[SERVER])){
+	print "Invalid Server ID";
+	exit;
+}
+$server = $servers[SERVER];
 
 $header = implode("\r\n",[
-	"user-id: $user_id",
-	"authorize: consumerKey=lovelive_test&token=$token&version=1.1&timeStamp=". time(). "&nonce=WV0",
-	"application-id: 626776655",
-	"bundle-version: 4.0.3",
-	"client-version: 19.6"
+	"user-id: " . USER_ID,
+	"authorize: consumerKey=lovelive_test&token=". TOKEN ."&version=1.1&timeStamp=". time(). "&nonce=WV0",
+	"application-id: $server[appId]",
+	"bundle-version: $server[bundleVersion]",
+	"client-version: $server[clientVersion]"
 ]);

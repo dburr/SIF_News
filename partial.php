@@ -1,11 +1,11 @@
 <?php
-if (!isset($_GET['disp_faulty']) || !isset($_GET['offset'])) { print "Invalid Request<br/>"; exit; }
+if (!isset($_GET['disp_faulty']) || !isset($_GET['offset'])) { exit; }
 $args = array(
 	"disp_faulty"=>intval($_GET['disp_faulty']),
 	"offset"=>intval($_GET['offset'])
 );
 require_once("./inc.header.php");
-$url = $server . "/partial?" . http_build_query($args);
+$url = $server["host"] . "/partial?" . http_build_query($args);
 $opts = array(
   'http'=>array(
     'method'=>"GET",
@@ -14,6 +14,4 @@ $opts = array(
 );
 $context = stream_context_create($opts);
 $a = file_get_contents($url, false, $context);
-$a  = str_replace("/webview.php/announce/detail?","./detail.php?",$a);
-$a = str_replace("/webview.php/announce/index?disp_faulty=","./?disp_faulty=",$a);
 print $a;
